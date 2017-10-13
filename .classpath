@@ -13,5 +13,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/luciano/Desktop/workfolder2/angularjs_spring_mvc/WebContent/WEB-INF/lib/xmlbeans-1.0.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/luciano/Desktop/workfolder2/angularjs_spring_mvc/WebContent/WEB-INF/lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -29,7 +29,30 @@
 		<mapping class="curso.angular.model.Fornecedor" />
 		<mapping class="curso.angular.model.Livro" />
 		<mapping class="curso.angular.model.Pedido" />
-		<mapping class="curso.angular.model.ItemPedido" />
+		<mapping class="curso.angular.model.AgendamentoLazer" />
+		<mapping class="curso.angular.model.AreaLazer" />
+		<mapping class="curso.angular.model.Condominio" />
+		<mapping class="curso.angular.model.Financeiro" />
+		<mapping class="curso.angular.model.Grupo" />
+		<mapping class="curso.angular.model.ItemLancamento" />
+		<mapping class="curso.angular.model.Lancamento" />
+		<mapping class="curso.angular.model.LancamentoFinanceiro" />
+		<mapping class="curso.angular.model.Mensagem" />
+		<mapping class="curso.angular.model.Notificacao" />
+		<mapping class="curso.angular.model.Pessoa" />
+		<mapping class="curso.angular.model.PessoaCondominio" />
+		<mapping class="curso.angular.model.Servico" />
+		<mapping class="curso.angular.model.Terceiro" />
+		<mapping class="curso.angular.model.TipoAreaLazer" />
+		<mapping class="curso.angular.model.TipoLancamento" />
+		<mapping class="curso.angular.model.TipoPessoa" />
+		<mapping class="curso.angular.model.TipoServico" />
+		<mapping class="curso.angular.model.TipoUnidade" />
+		<mapping class="curso.angular.model.Unidade" />
+		<mapping class="curso.angular.model.Vagasdisponivel" />
+		
+		
+		
 		
 		
 	</session-factory>
