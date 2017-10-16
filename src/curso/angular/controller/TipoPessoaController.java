@@ -8,19 +8,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.google.gson.Gson;
-
 import curso.angular.dao.DaoImplementacao;
 import curso.angular.dao.DaoInterface;
-import curso.angular.model.Pessoa;
+import curso.angular.model.TipoPessoa;
 
 @Controller
-@RequestMapping(value = "/pessoa")
-public class PessoaController extends DaoImplementacao<Pessoa>
-		implements DaoInterface<Pessoa> {
+@RequestMapping(value = "/tipopessoa")
+public class TipoPessoaController extends DaoImplementacao<TipoPessoa>
+		implements DaoInterface<TipoPessoa> {
 	
-	public PessoaController(Class<Pessoa> persistenceClass) {
+	public TipoPessoaController(Class<TipoPessoa> persistenceClass) {
 		super(persistenceClass);
 	}
 	
@@ -28,12 +26,13 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "salvar", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity salvar(@RequestBody String jsonPessoa)
+	public ResponseEntity salvar(@RequestBody String jsonTipoPessoa)
 			throws Exception{
-		Pessoa pessoa = new Gson().fromJson(jsonPessoa,
-				Pessoa.class);
-		System.out.println(jsonPessoa);
-		super.salvarOuAtualizar(pessoa);
+		TipoPessoa tipoPessoa = new Gson().fromJson(jsonTipoPessoa,
+				TipoPessoa.class);
+		
+		System.out.println(jsonTipoPessoa);
+		super.salvarOuAtualizar(tipoPessoa);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
 	
@@ -46,19 +45,19 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 		return json;
 	}
 
-	@RequestMapping(value = "deletar/{idPessoa}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "deletar/{idTipoPessoa}", method = RequestMethod.DELETE)
 	public @ResponseBody
-	String deletar(@PathVariable("idPessoa") String idPessoa)
+	String deletar(@PathVariable("idTipoPessoa") String idTipoPessoa)
 			throws Exception {
-		super.deletar(loadObjeto(Long.parseLong(idPessoa)));
+		super.deletar(loadObjeto(Long.parseLong(idTipoPessoa)));
 		return "";
 	}
 	
-	@RequestMapping(value = "listar/{idPessoa}", method = RequestMethod.GET)
+	@RequestMapping(value = "listar/{idTipoPessoa}", method = RequestMethod.GET)
 	public @ResponseBody
-	String buscarPessoa(@PathVariable("idPessoa") String idPessoa)
+	String buscarTipoPessoa(@PathVariable("idTipoPessoa") String idTipoPessoa)
 			throws Exception {
-		Pessoa objeto = super.loadObjeto(Long.parseLong(idPessoa));
+		TipoPessoa objeto = super.loadObjeto(Long.parseLong(idTipoPessoa));
 		if (objeto == null) {
 			return "{}";
 		}

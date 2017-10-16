@@ -49,7 +49,10 @@
       		<constructor-arg value="curso.angular.model.Pessoa"/>
       </bean>
 
-
+	  <bean id="tipoPessoaController" name="tipoPessoaController"
+        class="curso.angular.controller.TipoPessoaController">
+      		<constructor-arg value="curso.angular.model.TipoPessoa"/>
+      </bean>
 
 
 
