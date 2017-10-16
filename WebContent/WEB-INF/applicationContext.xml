@@ -51,6 +51,11 @@
         class="curso.angular.controller.ClienteController">
       		<constructor-arg value="curso.angular.model.Cliente"/>
       </bean>
+      
+      <bean id="pessoaController" name="pessoaController"
+        class="curso.angular.controller.PessoaController">
+      		<constructor-arg value="curso.angular.model.Pessoa"/>
+      </bean>
 
 
 	<bean id="estadosController" name="estadosController"

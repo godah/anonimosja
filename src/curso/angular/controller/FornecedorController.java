@@ -53,24 +53,29 @@ public class FornecedorController extends DaoImplementacao<Fornecedor>
 	 * @return JSON String de fornecedor
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "listar/{numeroPagina}", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value = "listar/{numeroPagina}", method = RequestMethod.GET)
 	@ResponseBody
 	public String listar(@PathVariable("numeroPagina") String numeroPagina)
 			throws Exception {
-		return new Gson().toJson(super.consultaPaginada(numeroPagina));
+		String json = new Gson().toJson(super.consultaPaginada(numeroPagina)); 
+		System.out.println(json);
+		return json;
 	}
 	
 	
-	@RequestMapping(value = "listartodos", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value = "listartodos", method = RequestMethod.GET)
 	@ResponseBody
 	public String listartodos()
 			throws Exception {
-		return new Gson().toJson(super.lista());
+		String json = new Gson().toJson(super.lista());
+		System.out.println(json);
+		return json;
 	}
 
-	@RequestMapping(value = "totalPagina", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value = "totalPagina", method = RequestMethod.GET)
 	@ResponseBody
 	public String totalPagina() throws Exception {
+		System.out.println("" + super.quantidadePagina());
 		return "" + super.quantidadePagina();
 	}
 
@@ -104,7 +109,9 @@ public class FornecedorController extends DaoImplementacao<Fornecedor>
 		if (objeto == null) {
 			return "{}";
 		}
-		return new Gson().toJson(objeto);
+		String json = new Gson().toJson(objeto); 
+		System.out.println(json);
+		return json;
 	}
 
 }
