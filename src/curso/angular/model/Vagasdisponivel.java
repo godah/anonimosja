@@ -6,60 +6,44 @@
 package curso.angular.model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.annotations.ForeignKey;
 
 /**
  *
  * @author luciano
  */
 @Entity
-@Table(name = "vagasdisponivel")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Vagasdisponivel.findAll", query = "SELECT v FROM Vagasdisponivel v"),
-    @NamedQuery(name = "Vagasdisponivel.findById", query = "SELECT v FROM Vagasdisponivel v WHERE v.id = :id"),
-    @NamedQuery(name = "Vagasdisponivel.findByValor", query = "SELECT v FROM Vagasdisponivel v WHERE v.valor = :valor"),
-    @NamedQuery(name = "Vagasdisponivel.findByQuantidade", query = "SELECT v FROM Vagasdisponivel v WHERE v.quantidade = :quantidade")})
 public class Vagasdisponivel implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valor")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private Float valor;
-    @Column(name = "quantidade")
     private Integer quantidade;
-    @JoinColumn(name = "unidade_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+	@ForeignKey(name = "unidadeid")
     private Unidade unidadeId;
 
     public Vagasdisponivel() {
     }
 
-    public Vagasdisponivel(Integer id) {
+    public Vagasdisponivel(Long id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -109,7 +93,7 @@ public class Vagasdisponivel implements Serializable {
 
     @Override
     public String toString() {
-        return "com.comdomino2.model.Vagasdisponivel[ id=" + id + " ]";
+        return "curso.angular.model.Vagasdisponivel[ id=" + id + " ]";
     }
     
 }

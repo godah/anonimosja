@@ -7,48 +7,36 @@ package curso.angular.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.annotations.ForeignKey;
 
 /**
  *
  * @author luciano
  */
 @Entity
-@Table(name = "pessoa_condominio")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "PessoaCondominio.findAll", query = "SELECT p FROM PessoaCondominio p"),
-    @NamedQuery(name = "PessoaCondominio.findByPessoaId", query = "SELECT p FROM PessoaCondominio p WHERE p.pessoaCondominioPK.pessoaId = :pessoaId"),
-    @NamedQuery(name = "PessoaCondominio.findByCondominioId", query = "SELECT p FROM PessoaCondominio p WHERE p.pessoaCondominioPK.condominioId = :condominioId"),
-    @NamedQuery(name = "PessoaCondominio.findByDataInicio", query = "SELECT p FROM PessoaCondominio p WHERE p.dataInicio = :dataInicio"),
-    @NamedQuery(name = "PessoaCondominio.findByDataFim", query = "SELECT p FROM PessoaCondominio p WHERE p.dataFim = :dataFim")})
 public class PessoaCondominio implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected PessoaCondominioPK pessoaCondominioPK;
-    @Column(name = "data_inicio")
     @Temporal(TemporalType.DATE)
     private Date dataInicio;
-    @Column(name = "data_fim")
     @Temporal(TemporalType.DATE)
     private Date dataFim;
-    @JoinColumn(name = "condominio_id", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Condominio condominio;
-    @JoinColumn(name = "pessoa_id", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Pessoa pessoa;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+	@ForeignKey(name = "condominioid")
+    private Condominio condominio = new Condominio();
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+	@ForeignKey(name = "pessoaid")
+    private Pessoa pessoa = new Pessoa();
 
     public PessoaCondominio() {
     }
@@ -123,7 +111,7 @@ public class PessoaCondominio implements Serializable {
 
     @Override
     public String toString() {
-        return "com.comdomino2.model.PessoaCondominio[ pessoaCondominioPK=" + pessoaCondominioPK + " ]";
+        return "curso.angular.model.PessoaCondominio[ pessoaCondominioPK=" + pessoaCondominioPK + " ]";
     }
     
 }

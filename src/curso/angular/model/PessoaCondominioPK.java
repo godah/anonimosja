@@ -18,7 +18,11 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class PessoaCondominioPK implements Serializable {
 
-    @Basic(optional = false)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Basic(optional = false)
     //@NotNull
     @Column(name = "pessoa_id")
     private int pessoaId;

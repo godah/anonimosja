@@ -6,20 +6,11 @@
 package curso.angular.model;
 
 import java.io.Serializable;
-import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-//import javax.validation.constraints.NotNull;
-//import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -27,44 +18,31 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "item_lancamento")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "ItemLancamento.findAll", query = "SELECT i FROM ItemLancamento i"),
-    @NamedQuery(name = "ItemLancamento.findById", query = "SELECT i FROM ItemLancamento i WHERE i.id = :id"),
-    @NamedQuery(name = "ItemLancamento.findByDescricao", query = "SELECT i FROM ItemLancamento i WHERE i.descricao = :descricao"),
-    @NamedQuery(name = "ItemLancamento.findByValorUnit", query = "SELECT i FROM ItemLancamento i WHERE i.valorUnit = :valorUnit"),
-    @NamedQuery(name = "ItemLancamento.findByQuantidade", query = "SELECT i FROM ItemLancamento i WHERE i.quantidade = :quantidade")})
 public class ItemLancamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    //@NotNull
-    @Column(name = "id")
-    private Integer id;
-    //@Size(max = 45)
-    @Column(name = "descricao")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String descricao;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valor_unit")
+
     private Float valorUnit;
-    @Column(name = "quantidade")
+
     private Float quantidade;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemlancamentoid")
-    private Collection<Lancamento> lancamentoCollection;
+    
 
     public ItemLancamento() {
     }
 
-    public ItemLancamento(Integer id) {
+    public ItemLancamento(Long id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -92,15 +70,6 @@ public class ItemLancamento implements Serializable {
         this.quantidade = quantidade;
     }
 
-    @XmlTransient
-    public Collection<Lancamento> getLancamentoCollection() {
-        return lancamentoCollection;
-    }
-
-    public void setLancamentoCollection(Collection<Lancamento> lancamentoCollection) {
-        this.lancamentoCollection = lancamentoCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -123,7 +92,7 @@ public class ItemLancamento implements Serializable {
 
     @Override
     public String toString() {
-        return "com.comdomino2.model.ItemLancamento[ id=" + id + " ]";
+        return "curso.angular.model.ItemLancamento[ id=" + id + " ]";
     }
     
 }

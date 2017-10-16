@@ -6,67 +6,41 @@
 package curso.angular.model;
 
 import java.io.Serializable;
-import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-//import javax.validation.constraints.NotNull;
-//import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author luciano
  */
 @Entity
-@Table(name = "tipo_unidade")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "TipoUnidade.findAll", query = "SELECT t FROM TipoUnidade t"),
-    @NamedQuery(name = "TipoUnidade.findById", query = "SELECT t FROM TipoUnidade t WHERE t.id = :id"),
-    @NamedQuery(name = "TipoUnidade.findByDescricao", query = "SELECT t FROM TipoUnidade t WHERE t.descricao = :descricao")})
 public class TipoUnidade implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-    @Basic(optional = false)
-    //@NotNull
-    //@Size(min = 1, max = 45)
-    @Column(name = "descricao")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String descricao;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoUnidadeId")
-    private Collection<Unidade> unidadeCollection;
 
     public TipoUnidade() {
     }
 
-    public TipoUnidade(Integer id) {
+    public TipoUnidade(Long id) {
         this.id = id;
     }
 
-    public TipoUnidade(Integer id, String descricao) {
+    public TipoUnidade(Long id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -76,15 +50,6 @@ public class TipoUnidade implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    @XmlTransient
-    public Collection<Unidade> getUnidadeCollection() {
-        return unidadeCollection;
-    }
-
-    public void setUnidadeCollection(Collection<Unidade> unidadeCollection) {
-        this.unidadeCollection = unidadeCollection;
     }
 
     @Override
@@ -109,7 +74,7 @@ public class TipoUnidade implements Serializable {
 
     @Override
     public String toString() {
-        return "com.comdomino2.model.TipoUnidade[ id=" + id + " ]";
+        return "curso.angular.model.TipoUnidade[ id=" + id + " ]";
     }
     
 }

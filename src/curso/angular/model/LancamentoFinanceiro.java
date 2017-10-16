@@ -7,90 +7,67 @@ package curso.angular.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-//import javax.validation.constraints.NotNull;
-//import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.annotations.ForeignKey;
 
 /**
  *
  * @author luciano
  */
 @Entity
-@Table(name = "lancamento_financeiro")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "LancamentoFinanceiro.findAll", query = "SELECT l FROM LancamentoFinanceiro l"),
-    @NamedQuery(name = "LancamentoFinanceiro.findById", query = "SELECT l FROM LancamentoFinanceiro l WHERE l.id = :id"),
-    @NamedQuery(name = "LancamentoFinanceiro.findByDataLancamento", query = "SELECT l FROM LancamentoFinanceiro l WHERE l.dataLancamento = :dataLancamento"),
-    @NamedQuery(name = "LancamentoFinanceiro.findByDescricao", query = "SELECT l FROM LancamentoFinanceiro l WHERE l.descricao = :descricao"),
-    @NamedQuery(name = "LancamentoFinanceiro.findByServicoPessoaServicoId", query = "SELECT l FROM LancamentoFinanceiro l WHERE l.servicoPessoaServicoId = :servicoPessoaServicoId"),
-    @NamedQuery(name = "LancamentoFinanceiro.findByServicoPessoaPessoaId", query = "SELECT l FROM LancamentoFinanceiro l WHERE l.servicoPessoaPessoaId = :servicoPessoaPessoaId")})
 public class LancamentoFinanceiro implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-    @Basic(optional = false)
-    //@NotNull
-    @Column(name = "data_lancamento")
+    private Long id;
     @Temporal(TemporalType.DATE)
     private Date dataLancamento;
-    @Basic(optional = false)
-    //@NotNull
-    //@Size(min = 1, max = 60)
-    @Column(name = "descricao")
     private String descricao;
-    @Column(name = "servico_pessoa_servico_id")
     private Integer servicoPessoaServicoId;
-    @Column(name = "servico_pessoa_pessoa_id")
     private Integer servicoPessoaPessoaId;
-    @JoinColumn(name = "servico_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Servico servicoId;
-    @JoinColumn(name = "financeiro_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Financeiro financeiroId;
-    @JoinColumn(name = "lancamento_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Lancamento lancamentoId;
-    @JoinColumn(name = "pessoa_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Pessoa pessoaId;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+	@ForeignKey(name = "servicoid")
+    private Servico servico = new Servico();
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+	@ForeignKey(name = "financeiroid")      
+    private Financeiro financeiro = new Financeiro();
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+	@ForeignKey(name = "lancamentoid")
+    private Lancamento lancamento = new Lancamento();
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+	@ForeignKey(name = "pessoaid")
+    private Pessoa pessoa = new Pessoa();
 
     public LancamentoFinanceiro() {
     }
 
-    public LancamentoFinanceiro(Integer id) {
+    public LancamentoFinanceiro(Long id) {
         this.id = id;
     }
 
-    public LancamentoFinanceiro(Integer id, Date dataLancamento, String descricao) {
+    public LancamentoFinanceiro(Long id, Date dataLancamento, String descricao) {
         this.id = id;
         this.dataLancamento = dataLancamento;
         this.descricao = descricao;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -127,35 +104,35 @@ public class LancamentoFinanceiro implements Serializable {
     }
 
     public Servico getServicoId() {
-        return servicoId;
+        return servico;
     }
 
     public void setServicoId(Servico servicoId) {
-        this.servicoId = servicoId;
+        this.servico = servicoId;
     }
 
     public Financeiro getFinanceiroId() {
-        return financeiroId;
+        return financeiro;
     }
 
     public void setFinanceiroId(Financeiro financeiroId) {
-        this.financeiroId = financeiroId;
+        this.financeiro = financeiroId;
     }
 
     public Lancamento getLancamentoId() {
-        return lancamentoId;
+        return lancamento;
     }
 
     public void setLancamentoId(Lancamento lancamentoId) {
-        this.lancamentoId = lancamentoId;
+        this.lancamento = lancamentoId;
     }
 
     public Pessoa getPessoaId() {
-        return pessoaId;
+        return pessoa;
     }
 
     public void setPessoaId(Pessoa pessoaId) {
-        this.pessoaId = pessoaId;
+        this.pessoa = pessoaId;
     }
 
     @Override
@@ -180,7 +157,7 @@ public class LancamentoFinanceiro implements Serializable {
 
     @Override
     public String toString() {
-        return "com.comdomino2.model.LancamentoFinanceiro[ id=" + id + " ]";
+        return "curso.angular.model.LancamentoFinanceiro[ id=" + id + " ]";
     }
     
 }

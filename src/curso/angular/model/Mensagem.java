@@ -7,68 +7,48 @@ package curso.angular.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-//import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.annotations.ForeignKey;
 
 /**
  *
  * @author luciano
  */
 @Entity
-@Table(name = "mensagem")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Mensagem.findAll", query = "SELECT m FROM Mensagem m"),
-    @NamedQuery(name = "Mensagem.findById", query = "SELECT m FROM Mensagem m WHERE m.id = :id"),
-    @NamedQuery(name = "Mensagem.findByTitulo", query = "SELECT m FROM Mensagem m WHERE m.titulo = :titulo"),
-    @NamedQuery(name = "Mensagem.findByTexto", query = "SELECT m FROM Mensagem m WHERE m.texto = :texto"),
-    @NamedQuery(name = "Mensagem.findByDatacriacao", query = "SELECT m FROM Mensagem m WHERE m.datacriacao = :datacriacao")})
 public class Mensagem implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-    //@Size(max = 20)
-    @Column(name = "titulo")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String titulo;
-    //@Size(max = 250)
-    @Column(name = "texto")
     private String texto;
-    @Column(name = "datacriacao")
     @Temporal(TemporalType.DATE)
     private Date datacriacao;
-    @JoinColumn(name = "condominio_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Condominio condominioId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+	@ForeignKey(name = "condominioid")
+    private Condominio condominio = new Condominio();
 
     public Mensagem() {
     }
 
-    public Mensagem(Integer id) {
+    public Mensagem(Long id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -97,11 +77,11 @@ public class Mensagem implements Serializable {
     }
 
     public Condominio getCondominioId() {
-        return condominioId;
+        return condominio;
     }
 
     public void setCondominioId(Condominio condominioId) {
-        this.condominioId = condominioId;
+        this.condominio = condominioId;
     }
 
     @Override
@@ -126,7 +106,7 @@ public class Mensagem implements Serializable {
 
     @Override
     public String toString() {
-        return "com.comdomino2.model.Mensagem[ id=" + id + " ]";
+        return "curso.angular.model.Mensagem[ id=" + id + " ]";
     }
     
 }

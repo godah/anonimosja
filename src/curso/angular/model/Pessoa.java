@@ -21,6 +21,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 //import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 /*
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -54,6 +57,7 @@ public class Pessoa implements Serializable {
     private String login;
     private String senha;
     private String email;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date vipAte;
     @ManyToOne(fetch = FetchType.EAGER)
 	@ForeignKey(name = "tipopessoaid")
