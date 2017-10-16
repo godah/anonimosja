@@ -15,7 +15,6 @@
 		<intercept-url pattern="/publico/**" access="permitAll" />
 		
 		<intercept-url pattern="/pessoa/**" access="permitAll" />
-		
 		<!-- intercept-url pattern="/pessoa/**" access="isAuthenticated() and hasAnyRole('ADMIN')"/-->
 		
 		<intercept-url pattern="/cliente/**" access="isAuthenticated() and hasAnyRole('ADMIN')"/>
