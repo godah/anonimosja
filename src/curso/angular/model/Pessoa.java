@@ -41,83 +41,24 @@ import org.hibernate.annotations.ForeignKey;
  * @author luciano
  */
 @Entity
-//@Table(name = "pessoa")
-/*
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Pessoa.findAll", query = "SELECT p FROM Pessoa p"),
-    @NamedQuery(name = "Pessoa.findById", query = "SELECT p FROM Pessoa p WHERE p.id = :id"),
-    @NamedQuery(name = "Pessoa.findByNome", query = "SELECT p FROM Pessoa p WHERE p.nome = :nome"),
-    @NamedQuery(name = "Pessoa.findByCpf", query = "SELECT p FROM Pessoa p WHERE p.cpf = :cpf"),
-    @NamedQuery(name = "Pessoa.findByCnpj", query = "SELECT p FROM Pessoa p WHERE p.cnpj = :cnpj"),
-    @NamedQuery(name = "Pessoa.findByTelefone", query = "SELECT p FROM Pessoa p WHERE p.telefone = :telefone"),
-    @NamedQuery(name = "Pessoa.findByLogin", query = "SELECT p FROM Pessoa p WHERE p.login = :login"),
-    @NamedQuery(name = "Pessoa.findBySenha", query = "SELECT p FROM Pessoa p WHERE p.senha = :senha"),
-    @NamedQuery(name = "Pessoa.findByEmail", query = "SELECT p FROM Pessoa p WHERE p.email = :email"),
-    @NamedQuery(name = "Pessoa.findByVipAte", query = "SELECT p FROM Pessoa p WHERE p.vipAte = :vipAte")})
-    */
 public class Pessoa implements Serializable {
 
-    //private static final long serialVersionUID = 1L;
-    @Id
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@Basic(optional = false)
-    //@Column(name = "id")
     private Long id;
-    //@Basic(optional = false)
-    //@NotNull
-    //@Size(min = 1, max = 45)
-    //@Column(name = "nome")
     private String nome;
-    //@Size(max = 45)
-    //@Column(name = "cpf")
     private String cpf;
-    //@Size(max = 45)
-    //@Column(name = "cnpj")
     private String cnpj;
-    //@Size(max = 14)
-    //@Column(name = "telefone")
     private String telefone;
-    //@Size(max = 45)
-    //@Column(name = "login")
     private String login;
-    //@Size(max = 20)
-    //@Column(name = "senha")
     private String senha;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
-    //@Basic(optional = false)
-    //@NotNull
-    //@Size(min = 1, max = 20)
-    //@Column(name = "email")
     private String email;
-    //@Column(name = "vip_ate")
-    //@Temporal(TemporalType.DATE)
     private Date vipAte;
-    //@JoinColumn(name = "tipo_pessoa_id", referencedColumnName = "id")
-    //@ManyToOne(optional = false)
     @ManyToOne(fetch = FetchType.EAGER)
 	@ForeignKey(name = "tipopessoaid")
     private TipoPessoa tipoPessoa = new TipoPessoa();
-    /*
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subsindico")
-    private Collection<Grupo> grupoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoaIdResponsavel")
-    private Collection<Unidade> unidadeCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoaIdProprietario")
-    private Collection<Unidade> unidadeCollection1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoaId")
-    private Collection<Terceiro> terceiroCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoaId")
-    private Collection<LancamentoFinanceiro> lancamentoFinanceiroCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoa")
-    private Collection<PessoaCondominio> pessoaCondominioCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sindico")
-    private Collection<Condominio> condominioCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoaId")
-    private Collection<Notificacao> notificacaoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoaId")
-    private Collection<AgendamentoLazer> agendamentoLazerCollection;
-*/
+
     public Pessoa() {
     }
 
@@ -210,88 +151,7 @@ public class Pessoa implements Serializable {
     public void setTipoPessoaId(TipoPessoa tipoPessoa) {
         this.tipoPessoa = tipoPessoa;
     }
-/*
-    @XmlTransient
-    public Collection<Grupo> getGrupoCollection() {
-        return grupoCollection;
-    }
 
-    public void setGrupoCollection(Collection<Grupo> grupoCollection) {
-        this.grupoCollection = grupoCollection;
-    }
-
-    @XmlTransient
-    public Collection<Unidade> getUnidadeCollection() {
-        return unidadeCollection;
-    }
-
-    public void setUnidadeCollection(Collection<Unidade> unidadeCollection) {
-        this.unidadeCollection = unidadeCollection;
-    }
-
-    @XmlTransient
-    public Collection<Unidade> getUnidadeCollection1() {
-        return unidadeCollection1;
-    }
-
-    public void setUnidadeCollection1(Collection<Unidade> unidadeCollection1) {
-        this.unidadeCollection1 = unidadeCollection1;
-    }
-
-    @XmlTransient
-    public Collection<Terceiro> getTerceiroCollection() {
-        return terceiroCollection;
-    }
-
-    public void setTerceiroCollection(Collection<Terceiro> terceiroCollection) {
-        this.terceiroCollection = terceiroCollection;
-    }
-
-    @XmlTransient
-    public Collection<LancamentoFinanceiro> getLancamentoFinanceiroCollection() {
-        return lancamentoFinanceiroCollection;
-    }
-
-    public void setLancamentoFinanceiroCollection(Collection<LancamentoFinanceiro> lancamentoFinanceiroCollection) {
-        this.lancamentoFinanceiroCollection = lancamentoFinanceiroCollection;
-    }
-
-    @XmlTransient
-    public Collection<PessoaCondominio> getPessoaCondominioCollection() {
-        return pessoaCondominioCollection;
-    }
-
-    public void setPessoaCondominioCollection(Collection<PessoaCondominio> pessoaCondominioCollection) {
-        this.pessoaCondominioCollection = pessoaCondominioCollection;
-    }
-
-    @XmlTransient
-    public Collection<Condominio> getCondominioCollection() {
-        return condominioCollection;
-    }
-
-    public void setCondominioCollection(Collection<Condominio> condominioCollection) {
-        this.condominioCollection = condominioCollection;
-    }
-
-    @XmlTransient
-    public Collection<Notificacao> getNotificacaoCollection() {
-        return notificacaoCollection;
-    }
-
-    public void setNotificacaoCollection(Collection<Notificacao> notificacaoCollection) {
-        this.notificacaoCollection = notificacaoCollection;
-    }
-
-    @XmlTransient
-    public Collection<AgendamentoLazer> getAgendamentoLazerCollection() {
-        return agendamentoLazerCollection;
-    }
-
-    public void setAgendamentoLazerCollection(Collection<AgendamentoLazer> agendamentoLazerCollection) {
-        this.agendamentoLazerCollection = agendamentoLazerCollection;
-    }
-*/
     @Override
     public int hashCode() {
         int hash = 0;
