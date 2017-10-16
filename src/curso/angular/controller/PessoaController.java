@@ -24,6 +24,8 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 		super(persistenceClass);
 	}
 	
+	
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "salvar", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity salvar(@RequestBody String jsonPessoa)

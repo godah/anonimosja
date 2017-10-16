@@ -72,6 +72,7 @@ public abstract class DaoImplementacao<T> implements DaoInterface<T> {
 		return criteria.list();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public T loadObjeto(Long codigo) throws Exception { 
 		return (T) sessionFactory.getCurrentSession().get(persistenceClass, codigo);
@@ -85,7 +86,7 @@ public abstract class DaoImplementacao<T> implements DaoInterface<T> {
 		return persistenceClass;
 	}
 	
-	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> lista(String campoBanco, String valorCampo) throws Exception {
 		Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(getPersistenceClass());
@@ -94,6 +95,8 @@ public abstract class DaoImplementacao<T> implements DaoInterface<T> {
 		return criteria.list();
 	}
 	
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> lista(String campoBanco, Long valorCampo) throws Exception {
 		Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(getPersistenceClass());
@@ -102,6 +105,8 @@ public abstract class DaoImplementacao<T> implements DaoInterface<T> {
 		return criteria.list();
 	}
 	
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> listaLikeExpression(String campoBanco, String valorCampo)
 			throws Exception {
@@ -112,7 +117,7 @@ public abstract class DaoImplementacao<T> implements DaoInterface<T> {
 	}
 	
 	
-	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> lista(String ids) throws Exception {
 		
@@ -135,6 +140,7 @@ public abstract class DaoImplementacao<T> implements DaoInterface<T> {
 	 * @return List<T> persistenceClass
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	public List<T> consultaPaginada(String numeroPagina) throws Exception {
 		int total_por_pagina = 6;
 		if (numeroPagina == null || (numeroPagina != null && numeroPagina.trim().isEmpty())){
