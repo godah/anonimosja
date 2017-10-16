@@ -9,11 +9,10 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.hibernate.annotations.ForeignKey;
 
 /**
  *
@@ -25,18 +24,20 @@ public class PessoaCondominio implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected PessoaCondominioPK pessoaCondominioPK;
+    
     @Temporal(TemporalType.DATE)
     private Date dataInicio;
+    
     @Temporal(TemporalType.DATE)
     private Date dataFim;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-	@ForeignKey(name = "condominioid")
-    private Condominio condominio = new Condominio();
+    @JoinColumn(name = "condominioid", referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Condominio condominio;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-	@ForeignKey(name = "pessoaid")
-    private Pessoa pessoa = new Pessoa();
+    @JoinColumn(name = "pessoaid", referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Pessoa pessoa;
 
     public PessoaCondominio() {
     }
