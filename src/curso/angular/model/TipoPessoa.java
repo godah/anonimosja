@@ -28,45 +28,46 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author luciano
  */
 @Entity
-@Table(name = "tipo_pessoa")
+/*@Table(name = "tipo_pessoa")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoPessoa.findAll", query = "SELECT t FROM TipoPessoa t"),
     @NamedQuery(name = "TipoPessoa.findById", query = "SELECT t FROM TipoPessoa t WHERE t.id = :id"),
     @NamedQuery(name = "TipoPessoa.findByDescricao", query = "SELECT t FROM TipoPessoa t WHERE t.descricao = :descricao")})
+    */
 public class TipoPessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-    @Basic(optional = false)
+    //@Basic(optional = false)
+    //@Column(name = "id")
+    private Long id;
+    //@Basic(optional = false)
     //@NotNull
     //@Size(min = 1, max = 45)
-    @Column(name = "descricao")
+    //@Column(name = "descricao")
     private String descricao;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoPessoaId")
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoPessoaId")
     private Collection<Pessoa> pessoaCollection;
-
+*/
     public TipoPessoa() {
     }
 
-    public TipoPessoa(Integer id) {
+    public TipoPessoa(Long id) {
         this.id = id;
     }
 
-    public TipoPessoa(Integer id, String descricao) {
+    public TipoPessoa(Long id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -77,7 +78,7 @@ public class TipoPessoa implements Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
+/*
     @XmlTransient
     public Collection<Pessoa> getPessoaCollection() {
         return pessoaCollection;
@@ -86,6 +87,7 @@ public class TipoPessoa implements Serializable {
     public void setPessoaCollection(Collection<Pessoa> pessoaCollection) {
         this.pessoaCollection = pessoaCollection;
     }
+    */
 
     @Override
     public int hashCode() {

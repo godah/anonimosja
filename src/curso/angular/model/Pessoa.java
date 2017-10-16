@@ -6,34 +6,43 @@
 package curso.angular.model;
 
 import java.io.Serializable;
-import java.util.Collection;
+//import java.util.Collection;
 import java.util.Date;
+/*
+ * 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+*/
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+//import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+/*
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 //import javax.validation.constraints.NotNull;
 //import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+*/
+import org.hibernate.annotations.ForeignKey;
 
 /**
  *
  * @author luciano
  */
 @Entity
-@Table(name = "pessoa")
+//@Table(name = "pessoa")
+/*
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Pessoa.findAll", query = "SELECT p FROM Pessoa p"),
@@ -46,46 +55,50 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Pessoa.findBySenha", query = "SELECT p FROM Pessoa p WHERE p.senha = :senha"),
     @NamedQuery(name = "Pessoa.findByEmail", query = "SELECT p FROM Pessoa p WHERE p.email = :email"),
     @NamedQuery(name = "Pessoa.findByVipAte", query = "SELECT p FROM Pessoa p WHERE p.vipAte = :vipAte")})
+    */
 public class Pessoa implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    //private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@Basic(optional = false)
+    //@Column(name = "id")
+    private Long id;
+    //@Basic(optional = false)
     //@NotNull
     //@Size(min = 1, max = 45)
-    @Column(name = "nome")
+    //@Column(name = "nome")
     private String nome;
     //@Size(max = 45)
-    @Column(name = "cpf")
+    //@Column(name = "cpf")
     private String cpf;
     //@Size(max = 45)
-    @Column(name = "cnpj")
+    //@Column(name = "cnpj")
     private String cnpj;
     //@Size(max = 14)
-    @Column(name = "telefone")
+    //@Column(name = "telefone")
     private String telefone;
     //@Size(max = 45)
-    @Column(name = "login")
+    //@Column(name = "login")
     private String login;
     //@Size(max = 20)
-    @Column(name = "senha")
+    //@Column(name = "senha")
     private String senha;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
-    @Basic(optional = false)
+    //@Basic(optional = false)
     //@NotNull
     //@Size(min = 1, max = 20)
-    @Column(name = "email")
+    //@Column(name = "email")
     private String email;
-    @Column(name = "vip_ate")
-    @Temporal(TemporalType.DATE)
+    //@Column(name = "vip_ate")
+    //@Temporal(TemporalType.DATE)
     private Date vipAte;
-    @JoinColumn(name = "tipo_pessoa_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private TipoPessoa tipoPessoaId;
+    //@JoinColumn(name = "tipo_pessoa_id", referencedColumnName = "id")
+    //@ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+	@ForeignKey(name = "tipopessoaid")
+    private TipoPessoa tipoPessoa = new TipoPessoa();
+    /*
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "subsindico")
     private Collection<Grupo> grupoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoaIdResponsavel")
@@ -104,25 +117,25 @@ public class Pessoa implements Serializable {
     private Collection<Notificacao> notificacaoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoaId")
     private Collection<AgendamentoLazer> agendamentoLazerCollection;
-
+*/
     public Pessoa() {
     }
 
-    public Pessoa(Integer id) {
+    public Pessoa(Long id) {
         this.id = id;
     }
 
-    public Pessoa(Integer id, String nome, String email) {
+    public Pessoa(Long id, String nome, String email) {
         this.id = id;
         this.nome = nome;
         this.email = email;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -190,14 +203,14 @@ public class Pessoa implements Serializable {
         this.vipAte = vipAte;
     }
 
-    public TipoPessoa getTipoPessoaId() {
-        return tipoPessoaId;
+    public TipoPessoa getTipoPessoa() {
+        return tipoPessoa;
     }
 
-    public void setTipoPessoaId(TipoPessoa tipoPessoaId) {
-        this.tipoPessoaId = tipoPessoaId;
+    public void setTipoPessoaId(TipoPessoa tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
     }
-
+/*
     @XmlTransient
     public Collection<Grupo> getGrupoCollection() {
         return grupoCollection;
@@ -278,7 +291,7 @@ public class Pessoa implements Serializable {
     public void setAgendamentoLazerCollection(Collection<AgendamentoLazer> agendamentoLazerCollection) {
         this.agendamentoLazerCollection = agendamentoLazerCollection;
     }
-
+*/
     @Override
     public int hashCode() {
         int hash = 0;
