@@ -30,6 +30,7 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 			throws Exception{
 		Pessoa pessoa = new Gson().fromJson(jsonPessoa,
 				Pessoa.class);
+		System.out.println(jsonPessoa);
 		super.salvarOuAtualizar(pessoa);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -51,7 +52,7 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 		return "";
 	}
 	
-	@RequestMapping(value = "buscarfornecedor/{idPessoa}", method = RequestMethod.GET)
+	@RequestMapping(value = "listar/{idPessoa}", method = RequestMethod.GET)
 	public @ResponseBody
 	String buscarFornecedor(@PathVariable("idPessoa") String idPessoa)
 			throws Exception {

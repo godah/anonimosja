@@ -14,13 +14,16 @@
 
 		<intercept-url pattern="/publico/**" access="permitAll" />
 		
+		<intercept-url pattern="/pessoa/**" access="permitAll" />
 		
-		<intercept-url pattern="/pessoa/**" access="isAuthenticated() and hasAnyRole('ADMIN')"/>
+		<!-- intercept-url pattern="/pessoa/**" access="isAuthenticated() and hasAnyRole('ADMIN')"/-->
 		
 		<intercept-url pattern="/cliente/**" access="isAuthenticated() and hasAnyRole('ADMIN')"/>
 		<intercept-url pattern="/fornecedor/**" access="isAuthenticated() and hasAnyRole('ADMIN')"/>
 		<intercept-url pattern="/grafico/**" access="isAuthenticated() and hasAnyRole('ADMIN')"/>
-		<intercept-url pattern="/livro/**" access="isAuthenticated() and hasAnyRole('ADMIN')"/>
+		
+		<intercept-url pattern="/livro/**" access="permitAll" />
+		<!--  intercept-url pattern="/livro/**" access="isAuthenticated() and hasAnyRole('ADMIN')"/-->
 		<intercept-url pattern="/loja/**" access="isAuthenticated() and hasAnyRole('ADMIN')"/>
 		<intercept-url pattern="/inicial.html" access="isAuthenticated() and hasAnyRole('ADMIN')"/>
 		

@@ -35,6 +35,7 @@ public class FornecedorController extends DaoImplementacao<Fornecedor>
 	@ResponseBody
 	public ResponseEntity salvar(@RequestBody String jsonFornecedor)
 			throws Exception {
+		System.out.println(jsonFornecedor);
 		Fornecedor fornecedor = new Gson().fromJson(jsonFornecedor,
 				Fornecedor.class);
 

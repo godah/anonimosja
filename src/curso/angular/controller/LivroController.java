@@ -36,6 +36,7 @@ public class LivroController extends DaoImplementacao<Livro> implements
 	 @RequestMapping(value="salvar", method= RequestMethod.POST)
 	 @ResponseBody
 	 public ResponseEntity salvar(@RequestBody String jsonLivro) throws Exception {
+		 System.out.println(jsonLivro);
 		 Livro livro = new Gson().fromJson(jsonLivro, Livro.class);
 		 super.salvarOuAtualizar(livro);
 		 return new ResponseEntity(HttpStatus.CREATED);
