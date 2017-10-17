@@ -27,11 +27,11 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "post", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity salvar(@RequestBody String jsonPessoa)
+	public ResponseEntity salvar(@RequestBody String jsonPost)
 			throws Exception{
-		Pessoa objeto = new Gson().fromJson(jsonPessoa,
+		Pessoa objeto = new Gson().fromJson(jsonPost,
 				Pessoa.class);
-		System.out.println(jsonPessoa);
+		System.out.println(jsonPost);
 		super.salvar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -39,10 +39,10 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "put", method = RequestMethod.PUT)
 	@ResponseBody
-	public ResponseEntity atualizar(@RequestBody String jsonPessoa)
+	public ResponseEntity atualizar(@RequestBody String jsonPut)
 			throws Exception{
-		Pessoa objeto = new Gson().fromJson(jsonPessoa, Pessoa.class);
-		System.out.println(jsonPessoa);
+		Pessoa objeto = new Gson().fromJson(jsonPut, Pessoa.class);
+		System.out.println(jsonPut);
 		super.atualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -50,11 +50,11 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "postorput", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity salvarOuAtualizar(@RequestBody String jsonPessoa)
+	public ResponseEntity salvarOuAtualizar(@RequestBody String jsonPost)
 			throws Exception{
-		Pessoa objeto = new Gson().fromJson(jsonPessoa,
+		Pessoa objeto = new Gson().fromJson(jsonPost,
 				Pessoa.class);
-		System.out.println(jsonPessoa);
+		System.out.println(jsonPost);
 		super.salvarOuAtualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -70,11 +70,11 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	}
 
 	
-	@RequestMapping(value = "list/{idPessoa}", method = RequestMethod.GET)
+	@RequestMapping(value = "list/{id}", method = RequestMethod.GET)
 	public @ResponseBody
-	String buscarPessoa(@PathVariable("idPessoa") String idPessoa)
+	String buscarPessoa(@PathVariable("id") String id)
 			throws Exception {
-		Pessoa objeto = super.loadObjeto(Long.parseLong(idPessoa));
+		Pessoa objeto = super.loadObjeto(Long.parseLong(id));
 		if (objeto == null) {
 			return "{}";
 		}
@@ -83,11 +83,11 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 		return json;
 	}
 	
-	@RequestMapping(value = "delete/{idPessoa}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
-	String deletar(@PathVariable("idPessoa") String idPessoa)
+	String deletar(@PathVariable("id") String id)
 			throws Exception {
-		super.deletar(loadObjeto(Long.parseLong(idPessoa)));
+		super.deletar(loadObjeto(Long.parseLong(id)));
 		return "";
 	}
 

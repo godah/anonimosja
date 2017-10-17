@@ -23,6 +23,9 @@
 		<intercept-url pattern="/tipopessoa/**" access="permitAll" />
 		<!-- intercept-url pattern="/tipopessoa/**" access="isAuthenticated() and hasAnyRole('ADMIN')"/-->
 		
+		<intercept-url pattern="agendamentolazer" access="permitAll" />
+		<!-- intercept-url pattern="/agendamentolazer/**" access="isAuthenticated() and hasAnyRole('ADMIN')"/-->
+		
 		<intercept-url pattern="/inicial.html" access="isAuthenticated() and hasAnyRole('ADMIN')"/>
 		
 		

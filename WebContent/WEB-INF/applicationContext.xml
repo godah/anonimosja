@@ -41,19 +41,24 @@
     
     
     
-    
-      <!-- Declarar controllers aqui  -->
-    
-      <bean id="pessoaController" name="pessoaController"
-        class="com.comdomino.controller.PessoaController">
-      		<constructor-arg value="com.comdomino.model.Pessoa"/>
-      </bean>
+   
+     <!-- Declarar controllers aqui  -->
+   
+     <bean id="pessoaController" name="pessoaController"
+       class="com.comdomino.controller.PessoaController">
+     		<constructor-arg value="com.comdomino.model.Pessoa"/>
+     </bean>
 
-	  <bean id="tipoPessoaController" name="tipoPessoaController"
-        class="com.comdomino.controller.TipoPessoaController">
-      		<constructor-arg value="com.comdomino.model.TipoPessoa"/>
-      </bean>
+  	<bean id="tipoPessoaController" name="tipoPessoaController"
+       class="com.comdomino.controller.TipoPessoaController">
+     		<constructor-arg value="com.comdomino.model.TipoPessoa"/>
+     </bean>
 
+
+	<bean id="agendamentoLazerController" name="agendamentoLazerController"
+        class="com.comdomino.controller.AgendamentoLazerController">
+      		<constructor-arg value="com.comdomino.model.AgendamentoLazer"/>
+     </bean>
 
 
 
