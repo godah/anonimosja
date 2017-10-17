@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.comdomino.dao.DaoImplementacao;
 import com.comdomino.dao.DaoInterface;
-import com.comdomino.model.Pessoa;
+import com.comdomino.model.Financeiro;
 import com.google.gson.Gson;
 
 @Controller
-@RequestMapping(value = "/pessoa")
-public class PessoaController extends DaoImplementacao<Pessoa>
-		implements DaoInterface<Pessoa> {
+@RequestMapping(value = "/financeiro")
+public class FinanceiroController extends DaoImplementacao<Financeiro>
+		implements DaoInterface<Financeiro> {
 	
-	public PessoaController(Class<Pessoa> persistenceClass) {
+	public FinanceiroController(Class<Financeiro> persistenceClass) {
 		super(persistenceClass);
 	}
 	
@@ -29,8 +29,8 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	@ResponseBody
 	public ResponseEntity salvar(@RequestBody String jsonPost)
 			throws Exception{
-		Pessoa objeto = new Gson().fromJson(jsonPost,
-				Pessoa.class);
+		Financeiro objeto = new Gson().fromJson(jsonPost,
+				Financeiro.class);
 		System.out.println(jsonPost);
 		super.salvar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
@@ -41,7 +41,7 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	@ResponseBody
 	public ResponseEntity atualizar(@RequestBody String jsonPut)
 			throws Exception{
-		Pessoa objeto = new Gson().fromJson(jsonPut, Pessoa.class);
+		Financeiro objeto = new Gson().fromJson(jsonPut, Financeiro.class);
 		System.out.println(jsonPut);
 		super.atualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
@@ -52,8 +52,8 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	@ResponseBody
 	public ResponseEntity salvarOuAtualizar(@RequestBody String jsonPost)
 			throws Exception{
-		Pessoa objeto = new Gson().fromJson(jsonPost,
-				Pessoa.class);
+		Financeiro objeto = new Gson().fromJson(jsonPost,
+				Financeiro.class);
 		System.out.println(jsonPost);
 		super.salvarOuAtualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
@@ -74,7 +74,7 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	public @ResponseBody
 	String buscar(@PathVariable("id") String id)
 			throws Exception {
-		Pessoa objeto = super.loadObjeto(Long.parseLong(id));
+		Financeiro objeto = super.loadObjeto(Long.parseLong(id));
 		if (objeto == null) {
 			return "{}";
 		}

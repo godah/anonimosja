@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.comdomino.dao.DaoImplementacao;
 import com.comdomino.dao.DaoInterface;
-import com.comdomino.model.Pessoa;
+import com.comdomino.model.AreaLazer;
 import com.google.gson.Gson;
 
 @Controller
-@RequestMapping(value = "/pessoa")
-public class PessoaController extends DaoImplementacao<Pessoa>
-		implements DaoInterface<Pessoa> {
+@RequestMapping(value = "/arealazer")
+public class AreaLazerController extends DaoImplementacao<AreaLazer>
+		implements DaoInterface<AreaLazer> {
 	
-	public PessoaController(Class<Pessoa> persistenceClass) {
+	public AreaLazerController(Class<AreaLazer> persistenceClass) {
 		super(persistenceClass);
 	}
 	
@@ -29,8 +29,8 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	@ResponseBody
 	public ResponseEntity salvar(@RequestBody String jsonPost)
 			throws Exception{
-		Pessoa objeto = new Gson().fromJson(jsonPost,
-				Pessoa.class);
+		AreaLazer objeto = new Gson().fromJson(jsonPost,
+				AreaLazer.class);
 		System.out.println(jsonPost);
 		super.salvar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
@@ -41,7 +41,7 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	@ResponseBody
 	public ResponseEntity atualizar(@RequestBody String jsonPut)
 			throws Exception{
-		Pessoa objeto = new Gson().fromJson(jsonPut, Pessoa.class);
+		AreaLazer objeto = new Gson().fromJson(jsonPut, AreaLazer.class);
 		System.out.println(jsonPut);
 		super.atualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
@@ -52,8 +52,8 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	@ResponseBody
 	public ResponseEntity salvarOuAtualizar(@RequestBody String jsonPost)
 			throws Exception{
-		Pessoa objeto = new Gson().fromJson(jsonPost,
-				Pessoa.class);
+		AreaLazer objeto = new Gson().fromJson(jsonPost,
+				AreaLazer.class);
 		System.out.println(jsonPost);
 		super.salvarOuAtualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
@@ -74,7 +74,7 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	public @ResponseBody
 	String buscar(@PathVariable("id") String id)
 			throws Exception {
-		Pessoa objeto = super.loadObjeto(Long.parseLong(id));
+		AreaLazer objeto = super.loadObjeto(Long.parseLong(id));
 		if (objeto == null) {
 			return "{}";
 		}
