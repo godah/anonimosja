@@ -23,21 +23,44 @@ public class TipoPessoaController extends DaoImplementacao<TipoPessoa>
 		super(persistenceClass);
 	}
 	
-	
 	@SuppressWarnings("rawtypes")
-	@RequestMapping(value = "salvar", method = RequestMethod.POST)
+	@RequestMapping(value = "post", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity salvar(@RequestBody String jsonTipoPessoa)
+	public ResponseEntity salvar(@RequestBody String jsonPessoa)
 			throws Exception{
-		TipoPessoa tipoPessoa = new Gson().fromJson(jsonTipoPessoa,
+		TipoPessoa objeto = new Gson().fromJson(jsonPessoa,
 				TipoPessoa.class);
-		
-		System.out.println(jsonTipoPessoa);
-		super.salvarOuAtualizar(tipoPessoa);
+		System.out.println(jsonPessoa);
+		super.salvar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value = "/listar", method = RequestMethod.GET)
+	@SuppressWarnings("rawtypes")
+	@RequestMapping(value = "put", method = RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity atualizar(@RequestBody String jsonPessoa)
+			throws Exception{
+		TipoPessoa objeto = new Gson().fromJson(jsonPessoa, TipoPessoa.class);
+		System.out.println(jsonPessoa);
+		super.atualizar(objeto);
+		return new ResponseEntity(HttpStatus.CREATED);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@RequestMapping(value = "postorput", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity salvarOuAtualizar(@RequestBody String jsonTipoPessoa)
+			throws Exception{
+		TipoPessoa objeto = new Gson().fromJson(jsonTipoPessoa,
+				TipoPessoa.class);
+		
+		System.out.println(jsonTipoPessoa);
+		super.salvarOuAtualizar(objeto);
+		return new ResponseEntity(HttpStatus.CREATED);
+	}
+	
+	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
 	public String listartodos()
 			throws Exception {
@@ -46,15 +69,7 @@ public class TipoPessoaController extends DaoImplementacao<TipoPessoa>
 		return json;
 	}
 
-	@RequestMapping(value = "deletar/{idTipoPessoa}", method = RequestMethod.DELETE)
-	public @ResponseBody
-	String deletar(@PathVariable("idTipoPessoa") String idTipoPessoa)
-			throws Exception {
-		super.deletar(loadObjeto(Long.parseLong(idTipoPessoa)));
-		return "";
-	}
-	
-	@RequestMapping(value = "listar/{idTipoPessoa}", method = RequestMethod.GET)
+	@RequestMapping(value = "list/{idTipoPessoa}", method = RequestMethod.GET)
 	public @ResponseBody
 	String buscarTipoPessoa(@PathVariable("idTipoPessoa") String idTipoPessoa)
 			throws Exception {
@@ -66,8 +81,15 @@ public class TipoPessoaController extends DaoImplementacao<TipoPessoa>
 		System.out.println(json);
 		return json;
 	}
-
 	
+	
+	@RequestMapping(value = "delete/{idTipoPessoa}", method = RequestMethod.DELETE)
+	public @ResponseBody
+	String deletar(@PathVariable("idTipoPessoa") String idTipoPessoa)
+			throws Exception {
+		super.deletar(loadObjeto(Long.parseLong(idTipoPessoa)));
+		return "";
+	}
 
 }
 
