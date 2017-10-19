@@ -24,27 +24,10 @@
 
 
 	   
-		<mapping class="com.comdomino.model.AgendamentoLazer" />
-		<mapping class="com.comdomino.model.AreaLazer" />
-		<mapping class="com.comdomino.model.Condominio" />
-		<mapping class="com.comdomino.model.Financeiro" />
-		<mapping class="com.comdomino.model.Grupo" />
-		<mapping class="com.comdomino.model.ItemLancamento" />
-		<mapping class="com.comdomino.model.Lancamento" />
-		<mapping class="com.comdomino.model.LancamentoFinanceiro" />
-		<mapping class="com.comdomino.model.Mensagem" />
-		<mapping class="com.comdomino.model.Notificacao" />
+		
 		<mapping class="com.comdomino.model.Pessoa" />
-		<mapping class="com.comdomino.model.PessoaCondominio" />
-		<mapping class="com.comdomino.model.Servico" />
-		<mapping class="com.comdomino.model.Terceiro" />
-		<mapping class="com.comdomino.model.TipoAreaLazer" />
-		<mapping class="com.comdomino.model.TipoLancamento" />
 		<mapping class="com.comdomino.model.TipoPessoa" />
-		<mapping class="com.comdomino.model.TipoServico" />
-		<mapping class="com.comdomino.model.TipoUnidade" />
-		<mapping class="com.comdomino.model.Unidade" />
-		<mapping class="com.comdomino.model.Vagasdisponivel" />
+		
 		
 		
 		
