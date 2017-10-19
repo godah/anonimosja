@@ -1,4 +1,4 @@
-package com.comdomino.filter;
+package com.anonimosja.filter;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -17,8 +17,8 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
-import com.comdomino.hibernate.HibernateUtil;
-import com.comdomino.listener.ContextLoaderListenerCaixakiUtils;
+import com.anonimosja.hibernate.HibernateUtil;
+import com.anonimosja.listener.ContextLoaderListenerCaixakiUtils;
 
 /**
  * Intercepta todas as requisições, faz commit e rollback 

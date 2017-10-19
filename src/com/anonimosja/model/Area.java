@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.comdomino.model;
+package com.anonimosja.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author luciano
  */
 @Entity
-public class TipoPessoa implements Serializable {
+public class Area implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -24,14 +24,14 @@ public class TipoPessoa implements Serializable {
     private Long id;
     private String descricao;
 
-    public TipoPessoa() {
+    public Area() {
     }
 
-    public TipoPessoa(Long id) {
+    public Area(Long id) {
         this.id = id;
     }
 
-    public TipoPessoa(Long id, String descricao) {
+    public Area(Long id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
@@ -62,10 +62,10 @@ public class TipoPessoa implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoPessoa)) {
+        if (!(object instanceof Area)) {
             return false;
         }
-        TipoPessoa other = (TipoPessoa) object;
+        Area other = (Area) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -74,7 +74,7 @@ public class TipoPessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "com.comdomino.model.TipoPessoa[ id=" + id + " ]";
+        return "com.anonimosja.model.TipoPessoa[ id=" + id + " ]";
     }
     
 }

@@ -1,4 +1,4 @@
-package com.comdomino.listener;
+package com.anonimosja.listener;
 
 import java.io.Serializable;
 

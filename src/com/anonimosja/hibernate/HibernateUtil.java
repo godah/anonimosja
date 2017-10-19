@@ -1,4 +1,4 @@
-package com.comdomino.hibernate;
+package com.anonimosja.hibernate;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.comdomino.dao;
+package com.anonimosja.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.comdomino.hibernate.HibernateUtil;
+import com.anonimosja.hibernate.HibernateUtil;
 /**
  * Implementação dos metodos padrões da interface de acesso ao banco e operações
  * @author alex

@@ -1,4 +1,4 @@
-package com.comdomino.dao;
+package com.anonimosja.dao;
 
 import java.util.List;
 

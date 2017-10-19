@@ -19,8 +19,8 @@
 	 
 	<mvc:resources location="/resources/" mapping="/resources/**" cache-period="5000" />
 
-	<context:component-scan base-package="com.comdomino.dao" />
-	<context:component-scan base-package="com.comdomino.controller" />
+	<context:component-scan base-package="com.anonimosja.dao" />
+	<context:component-scan base-package="com.anonimosja.controller" />
 
 
 	<!-- Data Source -->
@@ -44,15 +44,15 @@
    
     
     <bean id="pessoaController" name="pessoaController"
-		class="com.comdomino.controller.PessoaController">
-			<constructor-arg value="com.comdomino.model.Pessoa"/>
+		class="com.anonimosja.controller.PessoaController">
+			<constructor-arg value="com.anonimosja.model.Pessoa"/>
     </bean>
     
    
 
 	<bean id="tipoPessoaController" name="tipoPessoaController"
-		class="com.comdomino.controller.TipoPessoaController">
-			<constructor-arg value="com.comdomino.model.TipoPessoa"/>
+		class="com.anonimosja.controller.TipoPessoaController">
+			<constructor-arg value="com.anonimosja.model.TipoPessoa"/>
     </bean>
 
 
