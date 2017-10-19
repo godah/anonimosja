@@ -27,10 +27,9 @@
 		 <mapping class="com.anonimosja.model.Area" />
 		 <mapping class="com.anonimosja.model.Freelancer" />
 		 <mapping class="com.anonimosja.model.FreelancerArea" />
-		 <mapping class="com.anonimosja.model.Pessoa" />
 		 <mapping class="com.anonimosja.model.Referencia" />
 		 <mapping class="com.anonimosja.model.ServicoFeito" />
-		 <mapping class="com.anonimosja.model.TipoPessoa" />
+
 		
 		
 		

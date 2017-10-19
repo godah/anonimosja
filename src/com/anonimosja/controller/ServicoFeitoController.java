@@ -11,25 +11,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.anonimosja.dao.DaoImplementacao;
 import com.anonimosja.dao.DaoInterface;
-import com.anonimosja.model.TipoPessoa;
+import com.anonimosja.model.ServicoFeito;
 import com.google.gson.Gson;
 
 @Controller
-@RequestMapping(value = "/tipopessoa")
-public class TipoPessoaController extends DaoImplementacao<TipoPessoa>
-		implements DaoInterface<TipoPessoa> {
+@RequestMapping(value = "/servicofeito")
+public class ServicoFeitoController extends DaoImplementacao<ServicoFeito>
+		implements DaoInterface<ServicoFeito> {
 	
-	public TipoPessoaController(Class<TipoPessoa> persistenceClass) {
+	public ServicoFeitoController(Class<ServicoFeito> persistenceClass) {
 		super(persistenceClass);
 	}
+	
 	
 	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "post", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity salvar(@RequestBody String jsonPost)
 			throws Exception{
-		TipoPessoa objeto = new Gson().fromJson(jsonPost,
-				TipoPessoa.class);
+		ServicoFeito objeto = new Gson().fromJson(jsonPost,
+				ServicoFeito.class);
 		System.out.println(jsonPost);
 		super.salvar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
@@ -40,7 +41,7 @@ public class TipoPessoaController extends DaoImplementacao<TipoPessoa>
 	@ResponseBody
 	public ResponseEntity atualizar(@RequestBody String jsonPut)
 			throws Exception{
-		TipoPessoa objeto = new Gson().fromJson(jsonPut, TipoPessoa.class);
+		ServicoFeito objeto = new Gson().fromJson(jsonPut, ServicoFeito.class);
 		System.out.println(jsonPut);
 		super.atualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
@@ -51,9 +52,8 @@ public class TipoPessoaController extends DaoImplementacao<TipoPessoa>
 	@ResponseBody
 	public ResponseEntity salvarOuAtualizar(@RequestBody String jsonPost)
 			throws Exception{
-		TipoPessoa objeto = new Gson().fromJson(jsonPost,
-				TipoPessoa.class);
-		
+		ServicoFeito objeto = new Gson().fromJson(jsonPost,
+				ServicoFeito.class);
 		System.out.println(jsonPost);
 		super.salvarOuAtualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
@@ -69,11 +69,12 @@ public class TipoPessoaController extends DaoImplementacao<TipoPessoa>
 		return json;
 	}
 
+	
 	@RequestMapping(value = "list/{id}", method = RequestMethod.GET)
 	public @ResponseBody
-	String buscarTipoPessoa(@PathVariable("id") String id)
+	String buscar(@PathVariable("id") String id)
 			throws Exception {
-		TipoPessoa objeto = super.loadObjeto(Long.parseLong(id));
+		ServicoFeito objeto = super.loadObjeto(Long.parseLong(id));
 		if (objeto == null) {
 			return "{}";
 		}
@@ -82,12 +83,11 @@ public class TipoPessoaController extends DaoImplementacao<TipoPessoa>
 		return json;
 	}
 	
-	
-	@RequestMapping(value = "delete/{idTipoPessoa}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
-	String deletar(@PathVariable("idTipoPessoa") String idTipoPessoa)
+	String deletar(@PathVariable("id") String id)
 			throws Exception {
-		super.deletar(loadObjeto(Long.parseLong(idTipoPessoa)));
+		super.deletar(loadObjeto(Long.parseLong(id)));
 		return "";
 	}
 

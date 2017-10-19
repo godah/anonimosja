@@ -43,16 +43,26 @@
     
    
     
-    <bean id="pessoaController" name="pessoaController"
-		class="com.anonimosja.controller.PessoaController">
-			<constructor-arg value="com.anonimosja.model.Pessoa"/>
+    <bean id="areaController" name="areaController"
+		class="com.anonimosja.controller.AreaController">
+			<constructor-arg value="com.anonimosja.model.Area"/>
     </bean>
     
    
-
-	<bean id="tipoPessoaController" name="tipoPessoaController"
-		class="com.anonimosja.controller.TipoPessoaController">
-			<constructor-arg value="com.anonimosja.model.TipoPessoa"/>
+    <bean id="freelancerController" name="freelancerController"
+		class="com.anonimosja.controller.FreelancerController">
+			<constructor-arg value="com.anonimosja.model.Freelancer"/>
+    </bean>
+    
+    
+    <bean id="referenciaController" name="referenciaController"
+		class="com.anonimosja.controller.ReferenciaController">
+			<constructor-arg value="com.anonimosja.model.Referencia"/>
+    </bean>
+    
+    <bean id="servicoFeitoController" name="servicoFeitoController"
+		class="com.anonimosja.controller.ServicoFeitoController">
+			<constructor-arg value="com.anonimosja.model.ServicoFeito"/>
     </bean>
 
 

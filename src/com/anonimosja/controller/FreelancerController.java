@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.anonimosja.dao.DaoImplementacao;
 import com.anonimosja.dao.DaoInterface;
-import com.anonimosja.model.Pessoa;
+import com.anonimosja.model.Freelancer;
 import com.google.gson.Gson;
 
 @Controller
-@RequestMapping(value = "/pessoa")
-public class PessoaController extends DaoImplementacao<Pessoa>
-		implements DaoInterface<Pessoa> {
+@RequestMapping(value = "/freelancer")
+public class FreelancerController extends DaoImplementacao<Freelancer>
+		implements DaoInterface<Freelancer> {
 	
-	public PessoaController(Class<Pessoa> persistenceClass) {
+	public FreelancerController(Class<Freelancer> persistenceClass) {
 		super(persistenceClass);
 	}
 	
@@ -29,8 +29,8 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	@ResponseBody
 	public ResponseEntity salvar(@RequestBody String jsonPost)
 			throws Exception{
-		Pessoa objeto = new Gson().fromJson(jsonPost,
-				Pessoa.class);
+		Freelancer objeto = new Gson().fromJson(jsonPost,
+				Freelancer.class);
 		System.out.println(jsonPost);
 		super.salvar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
@@ -41,7 +41,7 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	@ResponseBody
 	public ResponseEntity atualizar(@RequestBody String jsonPut)
 			throws Exception{
-		Pessoa objeto = new Gson().fromJson(jsonPut, Pessoa.class);
+		Freelancer objeto = new Gson().fromJson(jsonPut, Freelancer.class);
 		System.out.println(jsonPut);
 		super.atualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
@@ -52,8 +52,8 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	@ResponseBody
 	public ResponseEntity salvarOuAtualizar(@RequestBody String jsonPost)
 			throws Exception{
-		Pessoa objeto = new Gson().fromJson(jsonPost,
-				Pessoa.class);
+		Freelancer objeto = new Gson().fromJson(jsonPost,
+				Freelancer.class);
 		System.out.println(jsonPost);
 		super.salvarOuAtualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
@@ -74,7 +74,7 @@ public class PessoaController extends DaoImplementacao<Pessoa>
 	public @ResponseBody
 	String buscar(@PathVariable("id") String id)
 			throws Exception {
-		Pessoa objeto = super.loadObjeto(Long.parseLong(id));
+		Freelancer objeto = super.loadObjeto(Long.parseLong(id));
 		if (objeto == null) {
 			return "{}";
 		}
