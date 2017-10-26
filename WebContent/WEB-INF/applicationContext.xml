@@ -43,6 +43,11 @@
     
    
     
+    <bean id="loginController" name="loginController"
+		class="com.anonimosja.controller.LoginController">
+			<constructor-arg value="com.anonimosja.model.Freelancer"/>
+    </bean>
+    
     <bean id="areaController" name="areaController"
 		class="com.anonimosja.controller.AreaController">
 			<constructor-arg value="com.anonimosja.model.Area"/>

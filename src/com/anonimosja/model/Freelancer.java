@@ -6,17 +6,20 @@
 package com.anonimosja.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+
+
 
 /**
  *
  * @author luciano
  */
 @Entity
+
 public class Freelancer implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -29,7 +32,7 @@ public class Freelancer implements Serializable {
     private String senha;
     private String email;
     private Float valorhora;
-    private Date nascimento;
+    private String nascimento;
     private Byte foto;
     
     public Freelancer() {
@@ -109,11 +112,11 @@ public class Freelancer implements Serializable {
 		this.valorhora = valorhora;
 	}
 
-	public Date getNascimento() {
+	public String getNascimento() {
 		return nascimento;
 	}
 
-	public void setNascimento(Date nascimento) {
+	public void setNascimento(String nascimento) {
 		this.nascimento = nascimento;
 	}
 

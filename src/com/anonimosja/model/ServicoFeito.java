@@ -29,7 +29,7 @@ public class ServicoFeito implements Serializable {
     private Long id;
 	private String descricao;
 	private String contratante;
-	private String Date;
+	private String Data;
     @ManyToOne(fetch = FetchType.EAGER)
 	@ForeignKey(name = "idfreelancer")
     private Freelancer freelancer = new Freelancer();
@@ -75,11 +75,11 @@ public class ServicoFeito implements Serializable {
 	}
 
 	public String getDate() {
-		return Date;
+		return Data;
 	}
 
 	public void setDate(String date) {
-		Date = date;
+		Data = date;
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 		Freelancer objeto = new Gson().fromJson(jsonPost,
 				Freelancer.class);
 		System.out.println(jsonPost);
-		super.salvar(objeto);
+		super.salvarOuAtualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
 	
