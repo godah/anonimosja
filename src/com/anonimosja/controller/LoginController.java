@@ -1,8 +1,6 @@
 package com.anonimosja.controller;
 
 import java.util.List;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,36 +26,13 @@ public class LoginController extends DaoImplementacao<Freelancer>
 	}
 	
 	@CrossOrigin
-	@SuppressWarnings("rawtypes")
-	@RequestMapping(value = "post", method = RequestMethod.POST)
-	@ResponseBody
-	public String salvar(@RequestBody String jsonPost)
-			throws Exception{
-		Freelancer objeto = new Gson().fromJson(jsonPost,
-				Freelancer.class);
-		System.out.println(jsonPost);
-		
-		String sql = "SELECT * FROM freelancer where login = '"+objeto.getLogin()+"' and senha = '"+objeto.getSenha()+"'";
-		List results = this.sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity("freelancer", Freelancer.class).list();
-				
-		for (Object item : results) {
-			System.out.println(item.toString());
-		}
-		
-		if(!results.isEmpty()){
-			return new Gson().toJson(results.get(0)); 			
-		}else{
-			return "{}";
-		}
-		 
-	}
-	@CrossOrigin
 	@RequestMapping(value = "list/{login}:{senha}", method = RequestMethod.GET)
 	public @ResponseBody
 	String buscar(@PathVariable("login") String login,@PathVariable("senha") String senha)
 			throws Exception {
 		
 		String sql = "SELECT * FROM freelancer where login = '"+login+"' and senha = '"+senha+"'";
+		@SuppressWarnings("unchecked")
 		List<Freelancer> results = this.sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity("freelancer", Freelancer.class).list();
 				
 		for (Object item : results) {

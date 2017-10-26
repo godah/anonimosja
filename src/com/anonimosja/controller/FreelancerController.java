@@ -1,5 +1,7 @@
 package com.anonimosja.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -33,8 +35,22 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 		Freelancer objeto = new Gson().fromJson(jsonPost,
 				Freelancer.class);
 		System.out.println(jsonPost);
-		super.salvarOuAtualizar(objeto);
-		return new ResponseEntity(HttpStatus.CREATED);
+		
+		String sql = "SELECT * FROM freelancer where login = '"+objeto.getLogin()+"'";
+		@SuppressWarnings("unchecked")
+		List<Freelancer> results = this.sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity("freelancer", Freelancer.class).list();
+				
+		for (Object item : results) {
+			System.out.println(item.toString());
+		}
+		
+		if(results.isEmpty()){
+			super.salvarOuAtualizar(objeto);
+			return new ResponseEntity(HttpStatus.CREATED);
+		}else{
+			return new ResponseEntity(HttpStatus.EXPECTATION_FAILED);
+		}		
+		
 	}
 	
 	@CrossOrigin
