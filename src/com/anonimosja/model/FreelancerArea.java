@@ -27,11 +27,13 @@ public class FreelancerArea implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+	
     @ManyToOne(fetch = FetchType.EAGER)
-	@ForeignKey(name = "idfreelancer")
+	@ForeignKey(name = "freelancer")
     private Freelancer freelancer = new Freelancer();
     
-    @ForeignKey(name = "idarea")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @ForeignKey(name = "area")
     private Area area = new Area();
    
 

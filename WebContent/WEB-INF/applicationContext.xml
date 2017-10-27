@@ -53,6 +53,11 @@
 			<constructor-arg value="com.anonimosja.model.Area"/>
     </bean>
     
+    <bean id="freelancerAreaController" name="freelancerAreaController"
+		class="com.anonimosja.controller.FreelancerAreaController">
+			<constructor-arg value="com.anonimosja.model.FreelancerArea"/>
+    </bean>
+    
    
     <bean id="freelancerController" name="freelancerController"
 		class="com.anonimosja.controller.FreelancerController">

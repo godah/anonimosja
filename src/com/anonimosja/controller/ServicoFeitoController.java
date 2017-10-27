@@ -1,5 +1,7 @@
 package com.anonimosja.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -85,6 +87,36 @@ public class ServicoFeitoController extends DaoImplementacao<ServicoFeito>
 		System.out.println(json);
 		return json;
 	}
+	
+	
+	@CrossOrigin
+	@RequestMapping(value = "/list/pessoa/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public String listarPorPessoa(@PathVariable("id") String id)
+			throws Exception {
+		
+		
+		String sql = "SELECT * FROM servicofeito where freelancer_id = '"+id+"'";
+		@SuppressWarnings("unchecked")
+		List<ServicoFeito> results = this.sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity("servicofeito", ServicoFeito.class).list();
+				
+		for (Object item : results) {
+			System.out.println(item.toString());
+		}
+		
+		if(!results.isEmpty()){
+			return new Gson().toJson(results); 			
+		}else{
+			return "{}";
+		}
+		
+		/*
+		String json = new Gson().toJson(super.lista());
+		System.out.println(json);
+		return json;
+		*/
+	}
+	
 	
 	@CrossOrigin
 	@RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)

@@ -19,10 +19,10 @@ import com.google.gson.Gson;
 
 @Controller
 @RequestMapping(value = "/freelancerarea")
-public class freelancerAreaController extends DaoImplementacao<FreelancerArea>
+public class FreelancerAreaController extends DaoImplementacao<FreelancerArea>
 		implements DaoInterface<FreelancerArea> {
 	
-	public freelancerAreaController(Class<FreelancerArea> persistenceClass) {
+	public FreelancerAreaController(Class<FreelancerArea> persistenceClass) {
 		super(persistenceClass);
 	}
 	
@@ -36,7 +36,7 @@ public class freelancerAreaController extends DaoImplementacao<FreelancerArea>
 				FreelancerArea.class);
 		System.out.println(jsonPost);
 		
-		String sql = "SELECT * FROM freelancerarea where idarea = '"+objeto.getArea().getId()+"'";
+		String sql = "SELECT * FROM freelancerarea where area_id = '"+objeto.getArea().getId()+"'";// and freelancer_id = '"+objeto.getFreelancer().getId()+"'";
 		@SuppressWarnings("unchecked")
 		List<FreelancerArea> results = this.sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity("freelancerarea", FreelancerArea.class).list();
 				
