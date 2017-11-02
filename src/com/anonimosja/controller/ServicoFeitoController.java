@@ -34,7 +34,7 @@ public class ServicoFeitoController extends DaoImplementacao<ServicoFeito>
 			throws Exception{
 		ServicoFeito objeto = new Gson().fromJson(jsonPost,
 				ServicoFeito.class);
-		System.out.println(jsonPost);
+		System.out.println("/servicofeito/post "+jsonPost);
 		super.salvar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -46,7 +46,7 @@ public class ServicoFeitoController extends DaoImplementacao<ServicoFeito>
 	public ResponseEntity atualizar(@RequestBody String jsonPut)
 			throws Exception{
 		ServicoFeito objeto = new Gson().fromJson(jsonPut, ServicoFeito.class);
-		System.out.println(jsonPut);
+		System.out.println("/servicofeito/put "+jsonPut);
 		super.atualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -59,7 +59,7 @@ public class ServicoFeitoController extends DaoImplementacao<ServicoFeito>
 			throws Exception{
 		ServicoFeito objeto = new Gson().fromJson(jsonPost,
 				ServicoFeito.class);
-		System.out.println(jsonPost);
+		System.out.println("/servicofeito/postorput "+jsonPost);
 		super.salvarOuAtualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -70,7 +70,7 @@ public class ServicoFeitoController extends DaoImplementacao<ServicoFeito>
 	public String listartodos()
 			throws Exception {
 		String json = new Gson().toJson(super.lista());
-		System.out.println(json);
+		System.out.println("/servicofeito/list "+json);
 		return json;
 	}
 
@@ -84,7 +84,7 @@ public class ServicoFeitoController extends DaoImplementacao<ServicoFeito>
 			return "{}";
 		}
 		String json = new Gson().toJson(objeto); 
-		System.out.println(json);
+		System.out.println("/servicofeito/list/{"+id+"}"+json);
 		return json;
 	}
 	
@@ -100,6 +100,7 @@ public class ServicoFeitoController extends DaoImplementacao<ServicoFeito>
 		@SuppressWarnings("unchecked")
 		List<ServicoFeito> results = this.sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity("servicofeito", ServicoFeito.class).list();
 				
+		System.out.println("/servicofeito/pessoa/{"+id+"}");
 		for (Object item : results) {
 			System.out.println(item.toString());
 		}
@@ -109,12 +110,6 @@ public class ServicoFeitoController extends DaoImplementacao<ServicoFeito>
 		}else{
 			return "{}";
 		}
-		
-		/*
-		String json = new Gson().toJson(super.lista());
-		System.out.println(json);
-		return json;
-		*/
 	}
 	
 	
@@ -123,7 +118,8 @@ public class ServicoFeitoController extends DaoImplementacao<ServicoFeito>
 	public @ResponseBody
 	String deletar(@PathVariable("id") String id)
 			throws Exception {
-		super.deletar(loadObjeto(Long.parseLong(id)));
+		System.out.println("/servicofeito/delete/{"+id+"} "+super.loadObjeto(Long.parseLong(id)));
+		super.deletar(super.loadObjeto(Long.parseLong(id)));
 		return "";
 	}
 

@@ -32,7 +32,7 @@ public class ReferenciaController extends DaoImplementacao<Referencia>
 			throws Exception{
 		Referencia objeto = new Gson().fromJson(jsonPost,
 				Referencia.class);
-		System.out.println(jsonPost);
+		System.out.println("/referencia/post "+jsonPost);
 		super.salvar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -44,7 +44,7 @@ public class ReferenciaController extends DaoImplementacao<Referencia>
 	public ResponseEntity atualizar(@RequestBody String jsonPut)
 			throws Exception{
 		Referencia objeto = new Gson().fromJson(jsonPut, Referencia.class);
-		System.out.println(jsonPut);
+		System.out.println("/referencia/put "+jsonPut);
 		super.atualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -57,7 +57,7 @@ public class ReferenciaController extends DaoImplementacao<Referencia>
 			throws Exception{
 		Referencia objeto = new Gson().fromJson(jsonPost,
 				Referencia.class);
-		System.out.println(jsonPost);
+		System.out.println("/referencia/postorput "+jsonPost);
 		super.salvarOuAtualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -68,7 +68,7 @@ public class ReferenciaController extends DaoImplementacao<Referencia>
 	public String listartodos()
 			throws Exception {
 		String json = new Gson().toJson(super.lista());
-		System.out.println(json);
+		System.out.println("/referencia/list "+json);
 		return json;
 	}
 
@@ -81,8 +81,8 @@ public class ReferenciaController extends DaoImplementacao<Referencia>
 		if (objeto == null) {
 			return "{}";
 		}
-		String json = new Gson().toJson(objeto); 
-		System.out.println(json);
+		String json = new Gson().toJson(objeto);
+		System.out.println("/referencia/list/{"+id+"}"+json);
 		return json;
 	}
 	
@@ -91,7 +91,8 @@ public class ReferenciaController extends DaoImplementacao<Referencia>
 	public @ResponseBody
 	String deletar(@PathVariable("id") String id)
 			throws Exception {
-		super.deletar(loadObjeto(Long.parseLong(id)));
+		System.out.println("/referencia/delete/{"+id+"}"+super.loadObjeto(Long.parseLong(id)));
+		super.deletar(super.loadObjeto(Long.parseLong(id)));
 		return "";
 	}
 

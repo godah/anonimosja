@@ -32,7 +32,7 @@ public class AreaController extends DaoImplementacao<Area>
 			throws Exception{
 		Area objeto = new Gson().fromJson(jsonPost,
 				Area.class);
-		System.out.println(jsonPost);
+		System.out.println("/area/post "+jsonPost);
 		super.salvar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -44,7 +44,7 @@ public class AreaController extends DaoImplementacao<Area>
 	public ResponseEntity atualizar(@RequestBody String jsonPut)
 			throws Exception{
 		Area objeto = new Gson().fromJson(jsonPut, Area.class);
-		System.out.println(jsonPut);
+		System.out.println("/area/put "+jsonPut);
 		super.atualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -57,7 +57,7 @@ public class AreaController extends DaoImplementacao<Area>
 			throws Exception{
 		Area objeto = new Gson().fromJson(jsonPost,
 				Area.class);
-		System.out.println(jsonPost);
+		System.out.println("/area/postorput "+jsonPost);
 		super.salvarOuAtualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -69,7 +69,7 @@ public class AreaController extends DaoImplementacao<Area>
 	public String listartodos()
 			throws Exception {
 		String json = new Gson().toJson(super.lista());
-		System.out.println(json);
+		System.out.println("/area/list "+json);
 		return json;
 	}
 
@@ -83,7 +83,7 @@ public class AreaController extends DaoImplementacao<Area>
 			return "{}";
 		}
 		String json = new Gson().toJson(objeto); 
-		System.out.println(json);
+		System.out.println("/area/list/{"+id+"} "+json);
 		return json;
 	}
 	
@@ -92,7 +92,8 @@ public class AreaController extends DaoImplementacao<Area>
 	public @ResponseBody
 	String deletar(@PathVariable("id") String id)
 			throws Exception {
-		super.deletar(loadObjeto(Long.parseLong(id)));
+		System.out.println("/area/delete/{"+id+"} "+super.loadObjeto(Long.parseLong(id)));
+		super.deletar(super.loadObjeto(Long.parseLong(id)));
 		return "";
 	}
 

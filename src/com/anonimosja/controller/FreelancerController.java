@@ -39,7 +39,7 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 		String sql = "SELECT * FROM freelancer where login = '"+objeto.getLogin()+"'";
 		@SuppressWarnings("unchecked")
 		List<Freelancer> results = this.sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity("freelancer", Freelancer.class).list();
-				
+		System.out.println("/freelancer/list");
 		for (Object item : results) {
 			System.out.println(item.toString());
 		}
@@ -60,7 +60,7 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 	public ResponseEntity atualizar(@RequestBody String jsonPut)
 			throws Exception{
 		Freelancer objeto = new Gson().fromJson(jsonPut, Freelancer.class);
-		System.out.println(jsonPut);
+		System.out.println("/freelancer/put "+jsonPut);
 		super.atualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -73,7 +73,7 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 			throws Exception{
 		Freelancer objeto = new Gson().fromJson(jsonPost,
 				Freelancer.class);
-		System.out.println(jsonPost);
+		System.out.println("/freelancer/postorput "+jsonPost);
 		super.salvarOuAtualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -84,7 +84,7 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 	public String listartodos()
 			throws Exception {
 		String json = new Gson().toJson(super.lista());
-		System.out.println(json);
+		System.out.println("/freelancer/list "+json);
 		return json;
 	}
 
@@ -98,7 +98,7 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 			return "{}";
 		}
 		String json = new Gson().toJson(objeto); 
-		System.out.println(json);
+		System.out.println("/freelancer/list/{"+id+"} "+json);
 		return json;
 	}
 	
@@ -107,7 +107,8 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 	public @ResponseBody
 	String deletar(@PathVariable("id") String id)
 			throws Exception {
-		super.deletar(loadObjeto(Long.parseLong(id)));
+		System.out.println("/freelancer/delete/{"+id+"} "+super.loadObjeto(Long.parseLong(id)).toString());
+		super.deletar(super.loadObjeto(Long.parseLong(id)));
 		return "";
 	}
 

@@ -34,7 +34,7 @@ public class FreelancerAreaController extends DaoImplementacao<FreelancerArea>
 			throws Exception{
 		FreelancerArea objeto = new Gson().fromJson(jsonPost,
 				FreelancerArea.class);
-		System.out.println(jsonPost);
+		System.out.println("/freelancerarea/post "+jsonPost);
 		
 		String sql = "SELECT * FROM freelancerarea where area_id = '"+objeto.getArea().getId()+"'";// and freelancer_id = '"+objeto.getFreelancer().getId()+"'";
 		@SuppressWarnings("unchecked")
@@ -59,7 +59,7 @@ public class FreelancerAreaController extends DaoImplementacao<FreelancerArea>
 	public ResponseEntity atualizar(@RequestBody String jsonPut)
 			throws Exception{
 		FreelancerArea objeto = new Gson().fromJson(jsonPut, FreelancerArea.class);
-		System.out.println(jsonPut);
+		System.out.println("/freelancerarea/put "+jsonPut);
 		super.atualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -72,7 +72,7 @@ public class FreelancerAreaController extends DaoImplementacao<FreelancerArea>
 			throws Exception{
 		FreelancerArea objeto = new Gson().fromJson(jsonPost,
 				FreelancerArea.class);
-		System.out.println(jsonPost);
+		System.out.println("/freelancerarea/postorput "+jsonPost);
 		super.salvarOuAtualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
@@ -84,7 +84,7 @@ public class FreelancerAreaController extends DaoImplementacao<FreelancerArea>
 	public String listartodos()
 			throws Exception {
 		String json = new Gson().toJson(super.lista());
-		System.out.println(json);
+		System.out.println("/freelancerarea/list "+json);
 		return json;
 	}
 
@@ -98,7 +98,7 @@ public class FreelancerAreaController extends DaoImplementacao<FreelancerArea>
 			return "{}";
 		}
 		String json = new Gson().toJson(objeto); 
-		System.out.println(json);
+		System.out.println("/freelancerarea/list/{"+id+"} "+json);
 		return json;
 	}
 	
@@ -107,7 +107,8 @@ public class FreelancerAreaController extends DaoImplementacao<FreelancerArea>
 	public @ResponseBody
 	String deletar(@PathVariable("id") String id)
 			throws Exception {
-		super.deletar(loadObjeto(Long.parseLong(id)));
+		System.out.println("/freelancerarea/delete/{"+id+"} "+super.loadObjeto(Long.parseLong(id)));
+		super.deletar(super.loadObjeto(Long.parseLong(id)));
 		return "";
 	}
 
