@@ -100,16 +100,29 @@ public class ServicoFeitoController extends DaoImplementacao<ServicoFeito>
 		@SuppressWarnings("unchecked")
 		List<ServicoFeito> results = this.sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity("servicofeito", ServicoFeito.class).list();
 				
-		System.out.println("/servicofeito/pessoa/{"+id+"}");
+		System.out.println("/servicofeito/list/pessoa/{"+id+"}");
 		for (Object item : results) {
 			System.out.println(item.toString());
 		}
-		
+		/*
 		if(!results.isEmpty()){
 			return new Gson().toJson(results); 			
 		}else{
-			return "{}";
+			
+			ServicoFeito vazio = new ServicoFeito();
+			vazio.setId(Long.parseLong("00"));
+			vazio.setContratante("Vazio");
+			vazio.setDescricao("Adicione um serviço!");
+			Freelancer freelancer = new Freelancer();
+			freelancer.setId(Long.parseLong(id));
+			vazio.setFreelancer(freelancer);
+			results.add(vazio);
+			return new Gson().toJson(results);
+			
+			return new Gson().toJson(results);
 		}
+		*/
+		return new Gson().toJson(results);
 	}
 	
 	
