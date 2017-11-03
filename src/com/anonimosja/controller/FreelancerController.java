@@ -28,7 +28,7 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 	
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
-	@RequestMapping(value = "post", method = RequestMethod.POST)
+	@RequestMapping(value = "/post", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity salvar(@RequestBody String jsonPost)
 			throws Exception{
@@ -39,16 +39,17 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 		String sql = "SELECT * FROM freelancer where login = '"+objeto.getLogin()+"'";
 		@SuppressWarnings("unchecked")
 		List<Freelancer> results = this.sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity("freelancer", Freelancer.class).list();
-		System.out.println("/freelancer/list");
+		System.out.println("/freelancer/post");
 		for (Object item : results) {
 			System.out.println(item.toString());
 		}
 		
 		if(results.isEmpty()){
-			super.salvarOuAtualizar(objeto);
+			super.salvar(objeto);
 			return new ResponseEntity(HttpStatus.CREATED);
 		}else{
-			return new ResponseEntity(HttpStatus.EXPECTATION_FAILED);
+			super.atualizar(objeto);
+			return new ResponseEntity(HttpStatus.CREATED);
 		}		
 		
 	}
@@ -67,7 +68,7 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 	
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
-	@RequestMapping(value = "postorput", method = RequestMethod.POST)
+	@RequestMapping(value = "/postorput", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity salvarOuAtualizar(@RequestBody String jsonPost)
 			throws Exception{

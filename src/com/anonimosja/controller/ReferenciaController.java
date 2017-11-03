@@ -1,5 +1,7 @@
 package com.anonimosja.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.anonimosja.dao.DaoImplementacao;
 import com.anonimosja.dao.DaoInterface;
 import com.anonimosja.model.Referencia;
+import com.anonimosja.model.ServicoFeito;
 import com.google.gson.Gson;
 
 @Controller
@@ -84,6 +87,31 @@ public class ReferenciaController extends DaoImplementacao<Referencia>
 		String json = new Gson().toJson(objeto);
 		System.out.println("/referencia/list/{"+id+"}"+json);
 		return json;
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/list/servicoFeito/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public String listarPorPessoa(@PathVariable("id") String id)
+			throws Exception {
+		
+		
+		String sql = "SELECT * FROM referencia where servicofeito_id = '"+id+"'";
+		@SuppressWarnings("unchecked")
+		List<Referencia> results = this.sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity("servicofeito", Referencia.class).list();
+				
+		System.out.println("/referencia/list/servicoFeito/{"+id+"}");
+		/*
+		for (Object item : results) {
+			System.out.println(item.toString());
+		}
+		*/
+		String json = new Gson().toJson(results.get(0)); 
+		System.out.println(json);
+		return json;
+		
+		
+		
 	}
 	
 	@CrossOrigin
