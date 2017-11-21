@@ -19,8 +19,9 @@
 				antiJARLocking="false"
                 antiResourceLocking="false"
 				username="postgres" 
-				password="admin" 
-				url="jdbc:postgresql://54.147.131.163:5432/autonomosja?autoReconnect=true"/>
+				password="admin"
+				url="jdbc:postgresql://34.238.67.140:5432/autonomosja?autoReconnect=true"/>
+				<!-- url="jdbc:postgresql://54.147.131.163:5432/autonomosja?autoReconnect=true"/-->
 				
 				
 	<!-- http://tomee.apache.org/datasource-config.html -->	

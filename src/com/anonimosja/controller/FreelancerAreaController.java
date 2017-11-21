@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.anonimosja.dao.DaoImplementacao;
 import com.anonimosja.dao.DaoInterface;
+import com.anonimosja.model.Freelancer;
 import com.anonimosja.model.FreelancerArea;
 import com.google.gson.Gson;
 
@@ -54,7 +55,7 @@ public class FreelancerAreaController extends DaoImplementacao<FreelancerArea>
 	
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
-	@RequestMapping(value = "put", method = RequestMethod.PUT)
+	@RequestMapping(value = "/put", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity atualizar(@RequestBody String jsonPut)
 			throws Exception{
@@ -66,7 +67,7 @@ public class FreelancerAreaController extends DaoImplementacao<FreelancerArea>
 	
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
-	@RequestMapping(value = "postorput", method = RequestMethod.POST)
+	@RequestMapping(value = "/postorput", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity salvarOuAtualizar(@RequestBody String jsonPost)
 			throws Exception{
@@ -89,7 +90,7 @@ public class FreelancerAreaController extends DaoImplementacao<FreelancerArea>
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "list/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/list/{id}", method = RequestMethod.GET)
 	public @ResponseBody
 	String buscar(@PathVariable("id") String id)
 			throws Exception {
@@ -103,7 +104,28 @@ public class FreelancerAreaController extends DaoImplementacao<FreelancerArea>
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/list/freelancer/{id}", method = RequestMethod.GET)
+	public @ResponseBody
+	String buscarPorFreelancer(@PathVariable("id") String id)
+			throws Exception {
+		
+		String sql = "SELECT * FROM freelancerarea where freelancer_id = '"+id+"'";
+		@SuppressWarnings("unchecked")
+		List<Freelancer> results = this.sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity("freelancer", Freelancer.class).list();
+		System.out.println("/list/freelancer/{"+id+"}");
+		for (Object item : results) {
+			System.out.println(item.toString());
+		}
+		
+		if(!results.isEmpty()){
+			return new Gson().toJson(results.get(0)); 			
+		}else{
+			return "{}";
+		}
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
 	String deletar(@PathVariable("id") String id)
 			throws Exception {
