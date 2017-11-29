@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.anonimosja.dao.DaoImplementacao;
 import com.anonimosja.dao.DaoInterface;
+import com.anonimosja.model.Area;
 import com.anonimosja.model.Freelancer;
 import com.anonimosja.model.FreelancerArea;
 import com.google.gson.Gson;
@@ -101,6 +102,28 @@ public class FreelancerAreaController extends DaoImplementacao<FreelancerArea>
 		String json = new Gson().toJson(objeto); 
 		System.out.println("/freelancerarea/list/{"+id+"} "+json);
 		return json;
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/areaporfreelancer/{id}", method = RequestMethod.GET)
+	public @ResponseBody
+	String buscarPorArea(@PathVariable("id") String id)
+			throws Exception {
+		
+		String sql = "SELECT * FROM freelancerarea where freelancer_id = '"+id+"'";
+		@SuppressWarnings("unchecked")
+		List<FreelancerArea> results = this.sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity("freelancerarea", FreelancerArea.class).list();
+		System.out.println("/list/areaporfreelancer/{"+id+"}");
+		for (Object item : results) {
+			System.out.println(item.toString());
+		}
+		if(!results.isEmpty()){
+			Area area = results.get(0).getArea();
+			
+			return new Gson().toJson(area); 			
+		}else{
+			return "{}";
+		}
 	}
 	
 	@CrossOrigin

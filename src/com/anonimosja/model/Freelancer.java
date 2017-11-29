@@ -33,7 +33,7 @@ public class Freelancer implements Serializable {
     private String email;
     private Float valorhora;
     private String nascimento;
-    private Byte foto;
+    private byte[] foto;
     
     public Freelancer() {
     }
@@ -120,11 +120,11 @@ public class Freelancer implements Serializable {
 		this.nascimento = nascimento;
 	}
 
-	public Byte getFoto() {
+	public byte[] getFoto() {
 		return foto;
 	}
 
-	public void setFoto(Byte foto) {
+	public void setFoto(byte[] foto) {
 		this.foto = foto;
 	}
 
