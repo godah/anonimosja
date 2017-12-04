@@ -6,8 +6,6 @@
 package com.anonimosja.model;
 
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,7 +33,8 @@ public class Freelancer implements Serializable {
     private String email;
     private Float valorhora;
     private String nascimento;
-    private byte[] foto;
+    //private byte[] foto;
+    private String foto;
     
     public Freelancer() {
     }
@@ -122,23 +121,12 @@ public class Freelancer implements Serializable {
 		this.nascimento = nascimento;
 	}
 
-	public String getFoto() {
-		try {
-			return new String(this.foto, "ISO-8859-1");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "";
-		}
+	public String getFoto() {		
+		return this.foto;
 	}
 
 	public void setFoto(String foto) {
-		try {
-			this.foto = foto.getBytes("ISO-8859-1");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.foto = foto;	
 	}
 
 	@Override

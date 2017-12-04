@@ -33,6 +33,8 @@ public class LoginController extends DaoImplementacao<Freelancer>
 		String sql = "SELECT * FROM freelancer where login = '"+login+"' and senha = '"+senha+"'";
 		@SuppressWarnings("unchecked")
 		List<Freelancer> results = this.sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity("freelancer", Freelancer.class).list();
+		
+				
 		System.out.println("/login/{"+login+"}:{"+senha+"}");
 		for (Object item : results) {
 			System.out.println(item.toString());

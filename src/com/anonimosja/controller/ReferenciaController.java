@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.anonimosja.dao.DaoImplementacao;
 import com.anonimosja.dao.DaoInterface;
 import com.anonimosja.model.Referencia;
-import com.anonimosja.model.ServicoFeito;
 import com.google.gson.Gson;
 
 @Controller

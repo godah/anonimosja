@@ -1,7 +1,6 @@
 package com.anonimosja.controller;
 
 import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.CrossOrigin;
-
 import com.anonimosja.dao.DaoImplementacao;
 import com.anonimosja.dao.DaoInterface;
 import com.anonimosja.model.Freelancer;
@@ -32,9 +30,11 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 	@ResponseBody
 	public ResponseEntity salvar(@RequestBody String jsonPost)
 			throws Exception{
+		System.out.println(jsonPost);
+		
 		Freelancer objeto = new Gson().fromJson(jsonPost,
 				Freelancer.class);
-		System.out.println(jsonPost);
+
 		
 		String sql = "SELECT * FROM freelancer where login = '"+objeto.getLogin()+"'";
 		@SuppressWarnings("unchecked")
@@ -60,7 +60,9 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 	@ResponseBody
 	public ResponseEntity atualizar(@RequestBody String jsonPut)
 			throws Exception{
+		
 		Freelancer objeto = new Gson().fromJson(jsonPut, Freelancer.class);
+				
 		System.out.println("/freelancer/put "+jsonPut);
 		super.atualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
@@ -72,8 +74,8 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 	@ResponseBody
 	public ResponseEntity salvarOuAtualizar(@RequestBody String jsonPost)
 			throws Exception{
-		Freelancer objeto = new Gson().fromJson(jsonPost,
-				Freelancer.class);
+		Freelancer objeto = new Gson().fromJson(jsonPost, Freelancer.class);
+			
 		System.out.println("/freelancer/postorput "+jsonPost);
 		super.salvarOuAtualizar(objeto);
 		return new ResponseEntity(HttpStatus.CREATED);
@@ -84,7 +86,10 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 	@ResponseBody
 	public String listartodos()
 			throws Exception {
+	
 		String json = new Gson().toJson(super.lista());
+		
+		
 		System.out.println("/freelancer/list "+json);
 		return json;
 	}
@@ -95,9 +100,11 @@ public class FreelancerController extends DaoImplementacao<Freelancer>
 	String buscar(@PathVariable("id") String id)
 			throws Exception {
 		Freelancer objeto = super.loadObjeto(Long.parseLong(id));
+		
 		if (objeto == null) {
 			return "{}";
 		}
+		
 		String json = new Gson().toJson(objeto); 
 		System.out.println("/freelancer/list/{"+id+"} "+json);
 		return json;
