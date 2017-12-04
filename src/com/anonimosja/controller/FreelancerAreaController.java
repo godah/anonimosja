@@ -36,21 +36,25 @@ public class FreelancerAreaController extends DaoImplementacao<FreelancerArea>
 			throws Exception{
 		FreelancerArea objeto = new Gson().fromJson(jsonPost,
 				FreelancerArea.class);
-		System.out.println("/freelancerarea/post "+jsonPost);
+		System.out.println("/freelancerara/post "+jsonPost);
 		
-		String sql = "SELECT * FROM freelancerarea where area_id = '"+objeto.getArea().getId()+"'";// and freelancer_id = '"+objeto.getFreelancer().getId()+"'";
-		@SuppressWarnings("unchecked")
+		//String sql = "SELECT * FROM freelancerarea where area_id = '"+objeto.getArea().getId()+"'";// and freelancer_id = '"+objeto.getFreelancer().getId()+"'";
+		String sql = "SELECT * FROM freelancerarea where freelancer_id = '"+objeto.getFreelancer().getId()+"'";// and freelancer_id = '"+objeto.getFreelancer().getId()+"'";
+		@SuppressWarnings("unchecked")	
 		List<FreelancerArea> results = this.sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity("freelancerarea", FreelancerArea.class).list();
 				
 		for (Object item : results) {
-			System.out.println(item.toString());
+			System.out.println("já existe UPDATE "+item.toString());
 		}
 		
 		if(results.isEmpty()){
-			super.salvarOuAtualizar(objeto);
+			super.salvar(objeto);
 			return new ResponseEntity(HttpStatus.CREATED);
 		}else{
-			return new ResponseEntity(HttpStatus.EXPECTATION_FAILED);
+			results.get(0).setArea(objeto.getArea());
+			System.out.println("id: "+results.get(0).getId()+" freelancer: "+results.get(0).getFreelancer().getNome()+" area: "+results.get(0).getArea().getId());
+			super.atualizar(results.get(0));
+			return new ResponseEntity(HttpStatus.CREATED);
 		}		
 	}
 	
